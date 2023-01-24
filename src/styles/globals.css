@@ -21,6 +21,9 @@ body {
 	position: absolute;
 	top: 580px;
 }
+.letter-page {
+	background: #ecfeff;
+}
 .footer__text {
 	font-family: 'Inter';
 	font-style: normal;
@@ -170,4 +173,17 @@ a {
 .cta-button:hover {
 	color: white !important;
 	background-color: #a5f3fc !important;
+}
+
+.letterForm__heading {
+	font-family: 'Saira Condensed';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 38px;
+	/* identical to box height */
+	text-align: start;
+	text-transform: uppercase;
+	/* Black */
+	color: #000000;
 }
