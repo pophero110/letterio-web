@@ -1,4 +1,5 @@
 import Logo from './logo';
+import Link from 'next/link';
 export default function PageHeader() {
 	return (
 		<div
@@ -8,21 +9,23 @@ export default function PageHeader() {
 				width: '100%',
 				paddingTop: '3rem',
 			}}>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}>
-				<Logo color='black'></Logo>
+			<Link href={'/'}>
 				<div
 					style={{
-						color: 'black',
-					}}
-					className='logo'>
-					LETTER.IO
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}>
+					<Logo color='black'></Logo>
+					<div
+						style={{
+							color: 'black',
+						}}
+						className='logo'>
+						LETTER.IO
+					</div>
 				</div>
-			</div>
+			</Link>
 			<div></div>
 		</div>
 	);

@@ -1,4 +1,5 @@
 import Button from './button';
+import Link from 'next/link';
 export default function HeroHeading() {
 	return (
 		<div
@@ -41,11 +42,13 @@ export default function HeroHeading() {
 						Create professional and personalized letters in minutes
 						with our easy-to-use online form
 					</div>
-					<Button
-						width='173px'
-						height='61px'
-						fontSize='20px'
-						text='GET STARTED NOW'></Button>
+					<Link href={'/letter'}>
+						<Button
+							width='173px'
+							height='61px'
+							fontSize='20px'
+							text='GET STARTED NOW'></Button>
+					</Link>
 				</div>
 			</div>
 		</div>

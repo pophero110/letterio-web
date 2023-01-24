@@ -1,4 +1,12 @@
-export default function Button({ width, height, text, fontSize, style }) {
+export default function Button({
+	width,
+	height,
+	text,
+	fontSize,
+	style,
+	onClickHandler,
+	id,
+}) {
 	const styles = {
 		width,
 		height,
@@ -16,7 +24,11 @@ export default function Button({ width, height, text, fontSize, style }) {
 		...style,
 	};
 	return (
-		<div className='cta-button' style={styles}>
+		<div
+			id={id}
+			onClick={onClickHandler}
+			className='cta-button'
+			style={styles}>
 			<p>{text}</p>
 		</div>
 	);

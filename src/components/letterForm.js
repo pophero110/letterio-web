@@ -158,7 +158,43 @@ function LetterTypeInput({ letterType, setLetterType }) {
 		</div>
 	);
 }
-
+function Alert({ message }) {
+	return (
+		<div
+			style={{
+				padding: '0.5rem',
+				marginTop: '1rem',
+				marginBottom: '1rem',
+				color: 'var(--error-color)',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+			}}>
+			<div
+				style={{
+					marginRight: '0.5rem',
+				}}>
+				<svg
+					width={'3rem'}
+					height={'3rem'}
+					focusable='false'
+					fill='currentColor'
+					aria-hidden='true'
+					viewBox='0 0 24 24'
+					data-testid='ErrorOutlineIcon'>
+					<path d='M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'></path>
+				</svg>
+			</div>
+			<div
+				style={{
+					fontFamily: 'Inter',
+					fontSize: '2rem',
+				}}>
+				{message}
+			</div>
+		</div>
+	);
+}
 import Button from './button';
 
 export default function LetterForm({
@@ -166,6 +202,8 @@ export default function LetterForm({
 	setFields,
 	letterType,
 	setLetterType,
+	createFormHandler,
+	formError,
 }) {
 	//TO DO: Performance test for over 100 fields
 	const addFieldHandler = () => {
@@ -197,7 +235,7 @@ export default function LetterForm({
 				flexDirection: 'column',
 				justifyContent: 'start',
 				width: '67.7rem',
-				marginTop: '7rem',
+				marginTop: '2rem',
 			}}>
 			<LetterTypeInput
 				letterType={letterType}
@@ -240,6 +278,7 @@ export default function LetterForm({
 				}}>
 				<AddButton onClickHandlder={addFieldHandler}></AddButton>
 			</div>
+			{formError && <Alert message={formError}></Alert>}
 			<div
 				style={{
 					width: '100%',
@@ -248,6 +287,7 @@ export default function LetterForm({
 					alignItems: 'center',
 				}}>
 				<Button
+					onClickHandler={createFormHandler}
 					width={'16.3rem'}
 					height={'4.8rem'}
 					fontSize={'2.4rem'}

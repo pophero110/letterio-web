@@ -6,6 +6,7 @@ import NumberIcon from '../components/numberIcon';
 import FormIcon from '../components/formIcon';
 import Button from '../components/button';
 import Footer from '../components/footer';
+import Link from 'next/link';
 const Home = () => {
 	return (
 		<>
@@ -396,11 +397,13 @@ const Home = () => {
 								display: 'flex',
 								justifyContent: 'center',
 							}}>
-							<Button
-								width='35.7rem'
-								height='10.6rem'
-								fontSize='4.8rem'
-								text='GET STARTED NOW'></Button>
+							<Link href={'/letter'}>
+								<Button
+									width='35.7rem'
+									height='10.6rem'
+									fontSize='4.8rem'
+									text='GET STARTED NOW'></Button>
+							</Link>
 						</div>
 					</div>
 				</div>

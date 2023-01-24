@@ -1,12 +1,8 @@
-function Step({ number, subheadline, activeStep, setActiveStep }) {
+function Step({ number, subheadline, activeStep }) {
 	return (
 		<div
-			onClick={() => {
-				setActiveStep(number);
-			}}
 			style={{
 				fontFamily: 'Saira Condensed',
-				cursor: 'pointer',
 				fontStyle: 'normal',
 				display: 'flex',
 				flexDirection: 'column',
@@ -49,7 +45,7 @@ const ArrowRight = (
 		/>
 	</svg>
 );
-export default function Stepper({ activeStep, setActiveStep }) {
+export default function Stepper({ activeStep }) {
 	return (
 		<div
 			style={{
@@ -61,8 +57,7 @@ export default function Stepper({ activeStep, setActiveStep }) {
 			<Step
 				number={1}
 				subheadline='CREATE FORM'
-				activeStep={activeStep}
-				setActiveStep={setActiveStep}></Step>
+				activeStep={activeStep}></Step>
 			<div
 				style={{
 					marginRight: '2rem',
@@ -72,8 +67,7 @@ export default function Stepper({ activeStep, setActiveStep }) {
 			<Step
 				number={2}
 				subheadline='GENERATE LETTER'
-				activeStep={activeStep}
-				setActiveStep={setActiveStep}></Step>
+				activeStep={activeStep}></Step>
 			<div
 				style={{
 					marginRight: '2rem',
@@ -83,8 +77,7 @@ export default function Stepper({ activeStep, setActiveStep }) {
 			<Step
 				number={3}
 				subheadline='EDIT LETTER'
-				activeStep={activeStep}
-				setActiveStep={setActiveStep}></Step>
+				activeStep={activeStep}></Step>
 		</div>
 	);
 }
