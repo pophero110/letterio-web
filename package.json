@@ -2,6 +2,10 @@
 	"name": "letterio-web",
 	"version": "0.1.0",
 	"private": true,
+	"engines": {
+		"node": "18.x",
+		"npm": "8.x"
+	},
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev",
