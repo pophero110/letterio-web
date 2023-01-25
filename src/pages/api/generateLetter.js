@@ -1,6 +1,4 @@
 import { setCookie, parseCookies } from 'nookies';
-import { app } from '../../utils/firebase';
-import { getDatabase, ref, set } from 'firebase/database';
 export default async function generateLetter(req, res) {
 	if (req.method === 'POST') {
 		const body = JSON.parse(req.body);
