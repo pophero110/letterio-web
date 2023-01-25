@@ -1,4 +1,3 @@
-import Logo from './logo';
 import style from './loadingOverlay.module.css';
 export default function LoadingOverlay({ loading }) {
 	return (
@@ -26,7 +25,14 @@ export default function LoadingOverlay({ loading }) {
 							display: 'flex',
 							justifyContent: 'center',
 							alignItems: 'center',
+							marginBottom: '2rem',
 						}}></div>
+					<div
+						style={{
+							fontFamily: 'Inter',
+						}}>
+						It usually takes 10 ~ 30 seconds
+					</div>
 				</div>
 			</div>
 		</div>

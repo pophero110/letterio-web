@@ -43,16 +43,18 @@ export default function Letter() {
 			header: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(fields),
+			body: JSON.stringify({
+				fields,
+				letterType,
+			}),
 		})
 			.then(async (response) => {
-				const data = await response.json();
-				return data;
+				const result = await response.json();
+				return result;
 			})
 			.then((data) => data)
-			.catch((error) => console.log('error', error));
-		console.log(result);
-		setLetterContent(result.data);
+			.catch((error) => error);
+		setLetterContent(result);
 		setLoading(false);
 		setActiveStep(3);
 	};
