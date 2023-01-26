@@ -23,17 +23,16 @@ export default async function generateLetter(req, res) {
 			method: 'GET',
 		});
 
-		const letter = await prisma.letter.create({
-			data: {
-				content: '',
-			},
-		});
+		// const letter = await prisma.letter.create({
+		// 	data: {
+		// 		content: '',
+		// 	},
+		// });
 
 		response.then(async (res) => {
 			const data = await res.json();
 			console.log(data.response);
-			await prisma.letter.update({
-				where: { id: letter.id },
+			await prisma.letter.create({
 				data: {
 					content: data.response,
 				},
