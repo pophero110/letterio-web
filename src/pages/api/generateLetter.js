@@ -55,6 +55,7 @@ export default async function generateLetter(req, res) {
 		// 	);
 		// }
 
-		res.status(200).json({ message: 'Generating', letterId: letter.id });
+		// res.status(200).json({ message: 'Generating', letterId: letter.id });
+		res.status(200).json({ message: 'Generating' });
 	}
 }
