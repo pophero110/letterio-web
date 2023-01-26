@@ -13,7 +13,8 @@
 		"start": "next start",
 		"postinstall": "prisma generate",
 		"firebase": "firebase",
-		"db-seed": "NODE_ENV=development prisma db seed"
+		"db-seed": "NODE_ENV=development prisma db seed",
+		"vercel-build": "prisma db push && next build"
 	},
 	"prisma": {
 		"seed": "tsx prisma/seed.js"
