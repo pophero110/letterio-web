@@ -18,44 +18,29 @@ export default async function generateLetter(req, res) {
 
 		const session = await unstable_getServerSession(req, res, authOptions);
 		console.log(session);
-
-		const response = fetch(url, {
+		const response = await fetch(url, {
 			method: 'GET',
 		});
+		const data = await response.json();
 
-		// const letter = await prisma.letter.create({
-		// 	data: {
-		// 		content: '',
-		// 	},
-		// });
-
-		response.then(async (res) => {
-			const data = await res.json();
-			console.log(data.response);
+		// response { response, conversationId, messageID}
+		if (data.response) {
 			await prisma.letter.create({
 				data: {
 					content: data.response,
 				},
 			});
-		});
-
-		// response { response, conversationId, messageID}
-		// const data = await response.json();
-		// if (data.response) {
-		// 	setCookie({ res }, 'conversationId', data.conversationId, {
-		// 		maxAge: 30 * 60,
-		// 	});
-		// 	setCookie({ res }, 'messageId', data.messageId, {
-		// 		maxAge: 30 * 60,
-		// 	});
-		// 	res.status(200).json(data.response);
-		// } else {
-		// 	res.status(400).json(
-		// 		'Something went wrong. Please try again later'
-		// 	);
-		// }
-
-		// res.status(200).json({ message: 'Generating', letterId: letter.id });
-		res.status(200).json({ message: 'Generating' });
+			setCookie({ res }, 'conversationId', data.conversationId, {
+				maxAge: 30 * 60,
+			});
+			setCookie({ res }, 'messageId', data.messageId, {
+				maxAge: 30 * 60,
+			});
+			res.status(200).json(data.response);
+		} else {
+			res.status(400).json(
+				'Something went wrong. Please try again later'
+			);
+		}
 	}
 }

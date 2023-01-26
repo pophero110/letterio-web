@@ -54,35 +54,9 @@ export default function Letter() {
 			})
 			.then((data) => data)
 			.catch((error) => error);
-		let intervalId;
-		let timeoutId;
-		const fetchData = async () => {
-			try {
-				const res = await fetch('/api/form?id=' + result.letterId);
-				const json = await res.json();
-				if (json.content) {
-					setLetterContent(json.content);
-					setLoading(false);
-					setActiveStep(3);
-					clearInterval(intervalId);
-					clearTimeout(timeoutId);
-				}
-			} catch (err) {
-				console.error(err);
-			}
-		};
-		intervalId = setInterval(() => {
-			console.log('fetching');
-			fetchData();
-		}, 10000);
-		timeoutId = setTimeout(() => {
-			console.log('Timeout');
-			setLoading(false);
-			setActiveStep(3);
-			setLetterContent('Something went wrong. Please try again');
-			clearInterval(intervalId);
-			clearTimeout(timeoutId);
-		}, 45000);
+		setLetterContent(result);
+		setLoading(false);
+		setActiveStep(3);
 	};
 	const validateForm = () => {
 		let formError = '';
