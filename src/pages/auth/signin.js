@@ -2,8 +2,7 @@ import Logo from '../../components/logo';
 import { RemoveButton, Input } from '../../components/letterForm';
 import Button from '../../components/button';
 import Link from 'next/link';
-import { getProviders, signIn } from 'next-auth/react';
-
+import { signIn } from 'next-auth/react';
 export default function Signin() {
 	return (
 		<>
@@ -37,7 +36,7 @@ export default function Signin() {
 								textTransform: 'uppercase',
 								textShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
 							}}>
-							Create an Account
+							Create an account
 						</div>
 						<div
 							style={{
@@ -93,7 +92,9 @@ export default function Signin() {
 							</Link>
 						</div>
 						<div>
-							<RemoveButton></RemoveButton>
+							<Link href={'/'}>
+								<RemoveButton></RemoveButton>
+							</Link>
 						</div>
 					</div>
 					<div>
@@ -157,10 +158,11 @@ export default function Signin() {
 								marginTop: '3rem',
 							}}>
 							<Button
+								onClickHandler={() => signIn('google')}
 								width={'100%'}
 								height={'4.8rem'}
 								fontSize={'2.4rem'}
-								text={'Sign up with Google'}>
+								text={'Sign in with Google'}>
 								<svg
 									style={{
 										marginLeft: '1rem',
@@ -192,10 +194,11 @@ export default function Signin() {
 
 						<div>
 							<Button
+								onClickHandler={() => signIn('discord')}
 								width={'100%'}
 								height={'4.8rem'}
 								fontSize={'2.4rem'}
-								text={'Sign up with Discord'}>
+								text={'Sign in with Discord'}>
 								<svg
 									style={{
 										marginLeft: '1rem',

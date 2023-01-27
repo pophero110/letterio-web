@@ -41,7 +41,7 @@ export default function Navbar() {
 					<div>Example</div>
 					<div>Pricing</div>
 					<div>About</div>
-					<Link href={'/api/auth/signin'}>
+					<Link href={'/auth/signin'}>
 						<Button
 							width='76px'
 							height='35px'
