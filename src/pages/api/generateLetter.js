@@ -17,7 +17,7 @@ export default async function generateLetter(req, res) {
 		}
 
 		const session = await unstable_getServerSession(req, res, authOptions);
-		console.log(session);
+
 		const response = await fetch(url, {
 			method: 'GET',
 		});
