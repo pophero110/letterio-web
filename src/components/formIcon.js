@@ -1,7 +1,7 @@
 export default function FormIcon() {
 	return (
 		<svg
-			enable-background='new 0 0 91 91'
+			enableBackground='new 0 0 91 91'
 			height='6.6rem'
 			id='Layer_1'
 			version='1.1'
