@@ -1,4 +1,4 @@
-function Input({ placeholder, value, onChangeHandler }) {
+export function Input({ placeholder, value, onChangeHandler }) {
 	return (
 		<input
 			value={value}
@@ -22,7 +22,7 @@ function Input({ placeholder, value, onChangeHandler }) {
 	);
 }
 
-function RemoveButton({ onClickHandlder }) {
+export function RemoveButton({ onClickHandlder }) {
 	return (
 		<div
 			onClick={onClickHandlder}

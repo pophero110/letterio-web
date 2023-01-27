@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Button from './button';
 import Logo from './logo';
 export default function Navbar() {
@@ -40,11 +41,13 @@ export default function Navbar() {
 					<div>Example</div>
 					<div>Pricing</div>
 					<div>About</div>
-					<Button
-						width='76px'
-						height='35px'
-						fontSize='16px'
-						text='Sign Up'></Button>
+					<Link href={'/api/auth/signin'}>
+						<Button
+							width='76px'
+							height='35px'
+							fontSize='16px'
+							text='Sign Up'></Button>
+					</Link>
 				</div>
 			</div>
 		</div>

@@ -6,6 +6,7 @@ export default function Button({
 	style,
 	onClickHandler,
 	id,
+	children,
 }) {
 	const styles = {
 		width,
@@ -30,6 +31,7 @@ export default function Button({
 			className='cta-button'
 			style={styles}>
 			<p>{text}</p>
+			{children}
 		</div>
 	);
 }
