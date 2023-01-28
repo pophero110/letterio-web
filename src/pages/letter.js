@@ -6,11 +6,35 @@ import Button from '../components/button';
 import BackButton from '../components/backButton';
 import LoadingOverlay from '../components/loadingOverlay';
 import jsPDF from 'jspdf';
-export default function Letter() {
+import { unstable_getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]';
+export const getServerSideProps = async (context) => {
+	const session = await unstable_getServerSession(
+		context.req,
+		context.res,
+		authOptions
+	);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/auth/signin',
+				permanent: false,
+			},
+		};
+	}
+	return {
+		props: {
+			session,
+		},
+	};
+};
+export default function Letter({ session }) {
 	const [activeStep, setActiveStep] = useState(1);
 	const [letterContent, setLetterContent] = useState('');
 	const [letterType, setLetterType] = useState('');
 	const [formError, setFormError] = useState('');
+	const [formId, setFormId] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [fields, setFields] = useState([
 		{
@@ -46,6 +70,7 @@ export default function Letter() {
 			body: JSON.stringify({
 				fields,
 				letterType,
+				formId,
 			}),
 		})
 			.then(async (response) => {
@@ -58,6 +83,7 @@ export default function Letter() {
 		setLoading(false);
 		setActiveStep(3);
 	};
+
 	const validateForm = () => {
 		let formError = '';
 
@@ -73,10 +99,35 @@ export default function Letter() {
 		setFormError(formError);
 		return formError;
 	};
-	const createFormHandler = () => {
+	const createFormHandler = async () => {
 		if (!validateForm()) {
-			setActiveStep(2);
-			setFormError('');
+			setLoading(true);
+			const result = await fetch('/api/createForm', {
+				method: 'POST',
+				header: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					fields,
+					letterType,
+				}),
+			})
+				.then(async (response) => {
+					const result = await response.json();
+					return result;
+				})
+				.then((data) => data)
+				.catch((error) => error);
+			if (result.data) {
+				setFormId(result.data.formId);
+				setActiveStep(2);
+				setFormError('');
+			}
+			if (result.error) {
+				setFormError(result.error);
+				console.log(result.error);
+			}
+			setLoading(false);
 		}
 	};
 	return (

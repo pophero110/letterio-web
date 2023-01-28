@@ -28,6 +28,8 @@ export default async function generateLetter(req, res) {
 			await prisma.letter.create({
 				data: {
 					content: data.response,
+					userId: session.user.id,
+					formId: body.formId,
 				},
 			});
 			setCookie({ res }, 'conversationId', data.conversationId, {
