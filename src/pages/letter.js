@@ -109,7 +109,11 @@ export default function Letter({ session }) {
 
 	const validateForm = () => {
 		let formError = '';
-
+		if (fields.length) {
+			formError = 'Please add details';
+			setFormError(formError);
+			return formError;
+		}
 		if (!fields.every((field) => !!field.value)) {
 			formError = 'Description can not be empty';
 		}
