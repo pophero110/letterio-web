@@ -7,7 +7,9 @@ import FormIcon from '../components/formIcon';
 import Button from '../components/button';
 import Footer from '../components/footer';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 const Home = () => {
+	const session = useSession();
 	return (
 		<>
 			<Head>
@@ -37,7 +39,10 @@ const Home = () => {
 							top: '27px',
 						}}>
 						<Navbar></Navbar>
-						<HeroHeading></HeroHeading>
+						<HeroHeading
+							authenicated={
+								session.status === 'authenticated'
+							}></HeroHeading>
 					</div>
 				</div>
 				<div className='main__content'>
@@ -397,13 +402,23 @@ const Home = () => {
 								display: 'flex',
 								justifyContent: 'center',
 							}}>
-							<Link href={'/letter'}>
-								<Button
-									width='35.7rem'
-									height='10.6rem'
-									fontSize='4.8rem'
-									text='GET STARTED NOW'></Button>
-							</Link>
+							{session.status === 'authenticated' ? (
+								<Link href={'/letter'}>
+									<Button
+										width='35.7rem'
+										height='10.6rem'
+										fontSize='4.8rem'
+										text='START WRITING'></Button>
+								</Link>
+							) : (
+								<Link href={'/auth/signin'}>
+									<Button
+										width='35.7rem'
+										height='10.6rem'
+										fontSize='4.8rem'
+										text='GET STARTED NOW'></Button>
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>

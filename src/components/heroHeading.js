@@ -1,6 +1,6 @@
 import Button from './button';
 import Link from 'next/link';
-export default function HeroHeading() {
+export default function HeroHeading({ authenicated }) {
 	return (
 		<div
 			className='heading'
@@ -42,13 +42,23 @@ export default function HeroHeading() {
 						Create professional and personalized letters in minutes
 						with our easy-to-use online form
 					</div>
-					<Link href={'/letter'}>
-						<Button
-							width='173px'
-							height='61px'
-							fontSize='20px'
-							text='GET STARTED NOW'></Button>
-					</Link>
+					{authenicated ? (
+						<Link href={'/letter'}>
+							<Button
+								width='173px'
+								height='61px'
+								fontSize='20px'
+								text='START WRITING'></Button>
+						</Link>
+					) : (
+						<Link href={'/auth/signin'}>
+							<Button
+								width='173px'
+								height='61px'
+								fontSize='20px'
+								text='GET STARTED NOW'></Button>
+						</Link>
+					)}
 				</div>
 			</div>
 		</div>

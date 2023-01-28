@@ -1,7 +1,10 @@
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Button from './button';
 import Logo from './logo';
+import { signOut } from 'next-auth/react';
 export default function Navbar() {
+	const session = useSession();
 	return (
 		<div
 			className='navbar'
@@ -41,13 +44,37 @@ export default function Navbar() {
 					<div>Example</div>
 					<div>Pricing</div>
 					<div>About</div>
-					<Link href={'/auth/signin'}>
-						<Button
-							width='76px'
-							height='35px'
-							fontSize='16px'
-							text='Sign Up'></Button>
-					</Link>
+					{session.status === 'authenticated' ? (
+						<button
+							className='user-avatar'
+							style={{
+								width: '3rem',
+								height: '3rem',
+								backgroundImage: `url(${session.data.user.image})`,
+								backgroundPosition: 'center',
+								backgroundSize: 'cover',
+								borderRadius: '50%',
+							}}>
+							<div className='user-avatar__dropdown'>
+								<div
+									style={{
+										cursor: 'pointer',
+									}}
+									onClick={() => signOut()}
+									className='user-avatar__dropdown__item'>
+									Sign Out
+								</div>
+							</div>
+						</button>
+					) : (
+						<Link href={'/auth/signin'}>
+							<Button
+								width='76px'
+								height='35px'
+								fontSize='16px'
+								text='Sign Up'></Button>
+						</Link>
+					)}
 				</div>
 			</div>
 		</div>
