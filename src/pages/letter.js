@@ -24,12 +24,10 @@ export const getServerSideProps = async (context) => {
 		};
 	}
 	return {
-		props: {
-			session,
-		},
+		props: {},
 	};
 };
-export default function Letter({ session }) {
+export default function Letter() {
 	useEffect(() => {
 		const fetchForm = async () => {
 			// setLoading(true);
@@ -109,7 +107,7 @@ export default function Letter({ session }) {
 
 	const validateForm = () => {
 		let formError = '';
-		if (fields.length) {
+		if (fields.length === 0) {
 			formError = 'Please add details';
 			setFormError(formError);
 			return formError;

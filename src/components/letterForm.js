@@ -208,7 +208,6 @@ export default function LetterForm({
 	formError,
 	formList,
 }) {
-	console.log({ formList });
 	const addFieldHandler = () => {
 		const id = Math.floor(Math.random() * 1000000);
 		setFields((prevState) => {
@@ -217,6 +216,9 @@ export default function LetterForm({
 	};
 	const removeFieldHandler = (index) => {
 		setFields((prevState) => {
+			if (prevState.length === 1) {
+				return [];
+			}
 			delete prevState[index];
 			return [...prevState];
 		});
