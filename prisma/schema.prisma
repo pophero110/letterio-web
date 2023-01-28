@@ -64,9 +64,19 @@ model VerificationToken {
 
 model Form {
   id     String   @id @default(cuid()) @map("_id")
-  userId String
-  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String?
+  user   User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type   String
   letter Letter[]
+  field  Field[]
+}
+
+model Field {
+  id     String @id @default(cuid()) @map("_id")
+  formId String
+  form   Form   @relation(fields: [formId], references: [id], onDelete: Cascade)
+  key    String
+  value  String
 }
 
 model Letter {
