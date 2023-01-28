@@ -93,7 +93,7 @@ export default function Signin() {
 						</div>
 					</div>
 					<div>
-						<div
+						{/* <div
 							style={{
 								marginBottom: '1rem',
 							}}>
@@ -145,7 +145,7 @@ export default function Signin() {
 								}}>
 								or
 							</span>
-						</div>
+						</div> */}
 
 						<div
 							style={{
