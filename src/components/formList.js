@@ -18,7 +18,7 @@ export default function FormList({ selectForm, formList }) {
 				return (
 					<div
 						key={form.id}
-						onClick={() => selectForm(form.field)}
+						onClick={() => selectForm(form.type, form.field)}
 						className='formList__item'>
 						{form.type}
 					</div>

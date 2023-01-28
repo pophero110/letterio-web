@@ -232,7 +232,8 @@ export default function LetterForm({
 		});
 	};
 
-	const selectForm = (fields) => {
+	const selectForm = (letterType, fields) => {
+		setLetterType(letterType);
 		setFields(fields);
 	};
 	return (
