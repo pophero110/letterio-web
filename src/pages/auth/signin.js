@@ -1,5 +1,5 @@
 import Logo from '../../components/logo';
-import { RemoveButton, Input } from '../../components/letterForm';
+import { Input } from '../../components/letterForm';
 import Button from '../../components/button';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
@@ -91,11 +91,6 @@ export default function Signin() {
 								</div>
 							</Link>
 						</div>
-						<div>
-							<Link href={'/'}>
-								<RemoveButton></RemoveButton>
-							</Link>
-						</div>
 					</div>
 					<div>
 						<div
@@ -158,7 +153,9 @@ export default function Signin() {
 								marginTop: '3rem',
 							}}>
 							<Button
-								onClickHandler={() => signIn('google')}
+								onClickHandler={() =>
+									signIn('google', { callbackUrl: '/' })
+								}
 								width={'100%'}
 								height={'4.8rem'}
 								fontSize={'2.4rem'}
@@ -194,7 +191,9 @@ export default function Signin() {
 
 						<div>
 							<Button
-								onClickHandler={() => signIn('discord')}
+								onClickHandler={() =>
+									signIn('discord', { callbackUrl: '/' })
+								}
 								width={'100%'}
 								height={'4.8rem'}
 								fontSize={'2.4rem'}
