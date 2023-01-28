@@ -1,3 +1,4 @@
+import FormList from './formList';
 export function Input({ placeholder, value, onChangeHandler }) {
 	return (
 		<input
@@ -136,6 +137,7 @@ function FieldInput({
 function LetterTypeInput({ letterType, setLetterType }) {
 	return (
 		<div
+			className='formList__button'
 			style={{
 				width: '100%',
 				display: 'flex',
@@ -204,8 +206,9 @@ export default function LetterForm({
 	setLetterType,
 	createFormHandler,
 	formError,
+	formList,
 }) {
-	//TO DO: Performance test for over 100 fields
+	console.log({ formList });
 	const addFieldHandler = () => {
 		const id = Math.floor(Math.random() * 1000000);
 		setFields((prevState) => {
@@ -228,6 +231,10 @@ export default function LetterForm({
 			return [...prevState];
 		});
 	};
+
+	const selectForm = (fields) => {
+		setFields(fields);
+	};
 	return (
 		<div
 			style={{
@@ -240,6 +247,7 @@ export default function LetterForm({
 			<LetterTypeInput
 				letterType={letterType}
 				setLetterType={setLetterType}></LetterTypeInput>
+			<FormList formList={formList} selectForm={selectForm}></FormList>
 			<div
 				style={{
 					display: 'flex',

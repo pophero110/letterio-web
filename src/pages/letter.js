@@ -1,6 +1,6 @@
 import PageHeader from '../components/pageHeader';
 import Stepper from '../components/stepper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LetterForm from '../components/letterForm';
 import Button from '../components/button';
 import BackButton from '../components/backButton';
@@ -30,6 +30,29 @@ export const getServerSideProps = async (context) => {
 	};
 };
 export default function Letter({ session }) {
+	useEffect(() => {
+		const fetchForm = async () => {
+			// setLoading(true);
+			const result = await fetch('/api/form', {
+				method: 'GET',
+			})
+				.then(async (response) => {
+					const result = await response.json();
+					return result;
+				})
+				.then((data) => data)
+				.catch((error) => error);
+			if (result.data) {
+				setFormList(result.data.forms);
+			}
+			if (result.error) {
+				setFormError(result.error);
+			}
+			// setLoading(false);
+		};
+		fetchForm();
+	}, []);
+	const [formList, setFormList] = useState([]);
 	const [activeStep, setActiveStep] = useState(1);
 	const [letterContent, setLetterContent] = useState('');
 	const [letterType, setLetterType] = useState('');
@@ -102,7 +125,7 @@ export default function Letter({ session }) {
 	const createFormHandler = async () => {
 		if (!validateForm()) {
 			setLoading(true);
-			const result = await fetch('/api/createForm', {
+			const result = await fetch('/api/form', {
 				method: 'POST',
 				header: {
 					'Content-Type': 'application/json',
@@ -153,6 +176,7 @@ export default function Letter({ session }) {
 						setActiveStep={setActiveStep}></Stepper>
 					{activeStep === 1 && (
 						<LetterForm
+							formList={formList}
 							fields={fields}
 							setFields={setFields}
 							formError={formError}

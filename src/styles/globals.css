@@ -216,8 +216,31 @@ a {
 }
 
 .user-avatar__dropdown__item:hover {
-	background-color: var(--cyan-200);
+	background-color: var(--neutral-400);
+	color: white;
 }
 .user-avatar:focus-within .user-avatar__dropdown {
 	display: block;
+}
+
+.formList {
+	visibility: hidden;
+	transition: visibility 0.1s;
+}
+
+.formList__item {
+	font-family: var(--saira-condensed);
+	font-weight: 700;
+	font-size: 2rem;
+	padding-left: 1rem;
+	cursor: default;
+}
+
+.formList__item:hover {
+	background-color: var(--neutral-400);
+	border-radius: 0.5rem;
+	color: white;
+}
+.formList__button:focus-within + .formList {
+	visibility: visible;
 }
