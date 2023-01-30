@@ -201,7 +201,7 @@ const Home = () => {
 										}}>
 										<FormIcon></FormIcon>
 										<div className='card__subheading'>
-											Cover Letter
+											Apology Letter
 										</div>
 										<div
 											className='card__text_2'
