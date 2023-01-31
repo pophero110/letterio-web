@@ -30,7 +30,7 @@ export const getServerSideProps = async (context) => {
 export default function Letter() {
 	useEffect(() => {
 		const fetchForm = async () => {
-			// setLoading(true);
+			setLoading(true);
 			const result = await fetch('/api/form', {
 				method: 'GET',
 			})
@@ -46,7 +46,7 @@ export default function Letter() {
 			if (result.error) {
 				setFormError(result.error);
 			}
-			// setLoading(false);
+			setLoading(false);
 		};
 		fetchForm();
 	}, []);
@@ -144,13 +144,15 @@ export default function Letter() {
 				.then((data) => data)
 				.catch((error) => error);
 			if (result.data) {
-				setFormId(result.data.formId);
+				setFormId(result.data.form.id);
+				setFormList((prevState) => {
+					return [...prevState, result.data.form];
+				});
 				setActiveStep(2);
 				setFormError('');
 			}
 			if (result.error) {
 				setFormError(result.error);
-				console.log(result.error);
 			}
 			setLoading(false);
 		}
@@ -178,6 +180,7 @@ export default function Letter() {
 						setActiveStep={setActiveStep}></Stepper>
 					{activeStep === 1 && (
 						<LetterForm
+							setFormList={setFormList}
 							formList={formList}
 							fields={fields}
 							setFields={setFields}

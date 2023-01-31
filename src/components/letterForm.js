@@ -207,6 +207,7 @@ export default function LetterForm({
 	createFormHandler,
 	formError,
 	formList,
+	setFormList,
 }) {
 	const addFieldHandler = () => {
 		const id = Math.floor(Math.random() * 1000000);
@@ -250,7 +251,10 @@ export default function LetterForm({
 			<LetterTypeInput
 				letterType={letterType}
 				setLetterType={setLetterType}></LetterTypeInput>
-			<FormList formList={formList} selectForm={selectForm}></FormList>
+			<FormList
+				formList={formList}
+				selectForm={selectForm}
+				setFormList={setFormList}></FormList>
 			<div
 				style={{
 					display: 'flex',

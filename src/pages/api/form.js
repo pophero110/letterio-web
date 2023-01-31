@@ -19,9 +19,11 @@ export default async function generateLetter(req, res) {
 						create: fields,
 					},
 				},
+				include: {
+					field: true,
+				},
 			});
-
-			res.status(200).json({ data: { formId: form.id }, error: null });
+			res.status(200).json({ data: { form }, error: null });
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				// The .code property can be accessed in a type-safe manner
@@ -57,6 +59,29 @@ export default async function generateLetter(req, res) {
 				});
 			}
 			throw e;
+		}
+	}
+	if (req.method === 'DELETE') {
+		try {
+			const { formId } = req.query;
+			await prisma.form.delete({
+				where: {
+					id: formId,
+				},
+			});
+			res.status(200).json({
+				data: {},
+				error: null,
+			});
+		} catch (error) {
+			if (error instanceof Prisma.PrismaClientKnownRequestError) {
+				// The .code property can be accessed in a type-safe manner
+				res.status(200).json({
+					data: null,
+					error: error.message,
+				});
+			}
+			throw error;
 		}
 	}
 }
