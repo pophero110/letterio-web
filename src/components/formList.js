@@ -45,7 +45,13 @@ export default function FormList({ selectForm, formList, setFormList }) {
 							display: 'flex',
 							justifyContent: 'space-between',
 						}}>
-						<div onClick={() => selectForm(form.type, form.field)}>
+						<div
+							style={{
+								width: '100%',
+							}}
+							onClick={() => {
+								selectForm(form.type, form.field);
+							}}>
 							{form.type}
 						</div>
 						<DeleteButton
